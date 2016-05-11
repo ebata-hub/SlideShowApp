@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD156CC11CE0DC850062F402 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD156CC01CE0DC850062F402 /* ResultViewController.swift */; };
 		AD9B133C1CDE02AC008CF42B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9B133B1CDE02AC008CF42B /* AppDelegate.swift */; };
 		AD9B133E1CDE02AC008CF42B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9B133D1CDE02AC008CF42B /* ViewController.swift */; };
 		AD9B13411CDE02AC008CF42B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD9B133F1CDE02AC008CF42B /* Main.storyboard */; };
@@ -14,6 +15,7 @@
 		AD9B13461CDE02AC008CF42B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD9B13441CDE02AC008CF42B /* LaunchScreen.storyboard */; };
 		AD9B13511CDE02AC008CF42B /* SlideshowAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9B13501CDE02AC008CF42B /* SlideshowAppTests.swift */; };
 		AD9B135C1CDE02AC008CF42B /* SlideshowAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9B135B1CDE02AC008CF42B /* SlideshowAppUITests.swift */; };
+		AD9B136A1CDE0B0C008CF42B /* images in Resources */ = {isa = PBXBuildFile; fileRef = AD9B13691CDE0B0C008CF42B /* images */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AD156CC01CE0DC850062F402 /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		AD9B13381CDE02AB008CF42B /* SlideshowApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlideshowApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD9B133B1CDE02AC008CF42B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD9B133D1CDE02AC008CF42B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +50,7 @@
 		AD9B13571CDE02AC008CF42B /* SlideshowAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SlideshowAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD9B135B1CDE02AC008CF42B /* SlideshowAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideshowAppUITests.swift; sourceTree = "<group>"; };
 		AD9B135D1CDE02AC008CF42B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD9B13691CDE0B0C008CF42B /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,9 +104,11 @@
 				AD9B133B1CDE02AC008CF42B /* AppDelegate.swift */,
 				AD9B133D1CDE02AC008CF42B /* ViewController.swift */,
 				AD9B133F1CDE02AC008CF42B /* Main.storyboard */,
+				AD156CC01CE0DC850062F402 /* ResultViewController.swift */,
 				AD9B13421CDE02AC008CF42B /* Assets.xcassets */,
 				AD9B13441CDE02AC008CF42B /* LaunchScreen.storyboard */,
 				AD9B13471CDE02AC008CF42B /* Info.plist */,
+				AD9B13691CDE0B0C008CF42B /* images */,
 			);
 			path = SlideshowApp;
 			sourceTree = "<group>";
@@ -229,6 +235,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD9B136A1CDE0B0C008CF42B /* images in Resources */,
 				AD9B13461CDE02AC008CF42B /* LaunchScreen.storyboard in Resources */,
 				AD9B13431CDE02AC008CF42B /* Assets.xcassets in Resources */,
 				AD9B13411CDE02AC008CF42B /* Main.storyboard in Resources */,
@@ -258,6 +265,7 @@
 			files = (
 				AD9B133E1CDE02AC008CF42B /* ViewController.swift in Sources */,
 				AD9B133C1CDE02AC008CF42B /* AppDelegate.swift in Sources */,
+				AD156CC11CE0DC850062F402 /* ResultViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,6 +490,7 @@
 				AD9B13621CDE02AC008CF42B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AD9B13631CDE02AC008CF42B /* Build configuration list for PBXNativeTarget "SlideshowAppTests" */ = {
 			isa = XCConfigurationList;
@@ -490,6 +499,7 @@
 				AD9B13651CDE02AC008CF42B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AD9B13661CDE02AC008CF42B /* Build configuration list for PBXNativeTarget "SlideshowAppUITests" */ = {
 			isa = XCConfigurationList;
@@ -498,6 +508,7 @@
 				AD9B13681CDE02AC008CF42B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

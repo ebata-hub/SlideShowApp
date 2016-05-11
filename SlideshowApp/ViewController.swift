@@ -9,17 +9,140 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    @IBOutlet weak var forwardButton: UIButton!
+    @IBOutlet weak var backwardButton: UIButton!
+    @IBOutlet weak var slideShowButton: UIButton!
+    
+    let photoList = ["images/image01.jpg", "images/image02.jpg", "images/image03.jpg"]
+    var currentPhotoIndex = 0
+    var currentImageView:UIView!
+    
+    var slideshowState = false
+    var timer:NSTimer!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+//        myViewArray.append(firstView)
+//        myViewArray.append(secondView)
+//        myViewArray.append(thirdView)
+        
+        let rect = CGRect(x:0, y:0, width:300, height:200)
+        let imageView = UIImageView(frame: rect)
+        imageView.contentMode = .ScaleAspectFit
+        imageView.image = UIImage(named: "images/image01.jpg")
+        imageView.center = self.view.center
+        self.view.addSubview(imageView)
+        currentImageView = imageView;
+    
+        imageView.userInteractionEnabled = true
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageTapped)))
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    @IBAction func performForward(sender: AnyObject) {
+        currentPhotoIndex += 1
+        if currentPhotoIndex >= photoList.count {
+            currentPhotoIndex = 0
+        }
+        
+        self.performTransition(currentPhotoIndex)
+    }
+    @IBAction func performBackward(sender: AnyObject) {
+        currentPhotoIndex -= 1
+        if currentPhotoIndex < 0 {
+            currentPhotoIndex = photoList.count - 1
+        }
+        
+        self.performTransition(currentPhotoIndex)
+   }
+    
+    @IBAction func performSlideshow(sender: AnyObject) {
+        
+        var controlState: UIControlState
+        
+        if slideshowState == false {
+            timer = NSTimer.scheduledTimerWithTimeInterval(
+                2.0,
+                target: self,
+                selector: #selector(ViewController.Slideshow),
+                userInfo: nil,
+                repeats: true
+            )
+            
+            forwardButton.enabled = false
+            backwardButton.enabled = false
+            
+            controlState = slideShowButton.state
+//            slideShowButton.setTitle("stop", forState: controlState)
+            slideShowButton.setTitle("停止", forState: .Normal)
+            
+            slideshowState = true
+            
+        } else {
+            timer.invalidate()
+            
+            forwardButton.enabled = true
+            backwardButton.enabled = true
+            
+            controlState = slideShowButton.state
+//            slideShowButton.setTitle("play", forState: controlState)
+            slideShowButton.setTitle("再生", forState: .Normal)
+            
+            slideshowState = false
+        }
+    }
+    
+    func Slideshow() {
+        currentPhotoIndex += 1
+        if currentPhotoIndex >= photoList.count {
+            currentPhotoIndex = 0
+        }
+        
+        self.performTransition(currentPhotoIndex)
+    }
+    
+    func performTransition(newIndex:Int) {
+        let rect = CGRect(x:0, y:0, width:300, height:200)
+        let newImageView = UIImageView(frame: rect)
+        newImageView.contentMode = .ScaleAspectFit
+        let photoName = photoList[newIndex]
+        newImageView.image = UIImage(named: photoName)
+        newImageView.center = self.view.center
+        
+        UIView.transitionFromView(
+            currentImageView,
+            toView: newImageView,
+            duration: 1,
+            options: UIViewAnimationOptions.TransitionCrossDissolve,
+            completion: nil)
+        
+        currentImageView = newImageView
+        currentPhotoIndex = newIndex
+        
+        newImageView.userInteractionEnabled = true
+        newImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageTapped)))
+    }
+    
+    func imageTapped(sender: UITapGestureRecognizer) {
+        print("imageTapped\n")
+                
+        let nextVC = self.storyboard?.instantiateViewControllerWithIdentifier("ResultViewController")
+        let resultViewController:ResultViewController = nextVC as! ResultViewController
+        resultViewController.currentPhotoIndex = currentPhotoIndex
+        
+        nextVC?.modalTransitionStyle = .CrossDissolve
+        self.presentViewController(nextVC!, animated: true, completion: nil)
+    
+    }
+    
+    @IBAction func unwind(segue: UIStoryboardSegue) {
+    }
 }
 
