@@ -17,22 +17,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ul-4w-bUD">
-                                <rect key="frame" x="91" y="518" width="30" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ul-4w-bUD">
+                                <rect key="frame" x="165" y="511" width="30" height="30"/>
                                 <state key="normal" title="戻る"/>
                                 <connections>
                                     <action selector="performBackward:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pJ9-86-9Gg"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sfA-4P-0Sp">
-                                <rect key="frame" x="346" y="518" width="30" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sfA-4P-0Sp">
+                                <rect key="frame" x="405" y="511" width="30" height="30"/>
                                 <state key="normal" title="進む"/>
                                 <connections>
                                     <action selector="performForward:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1Bw-7g-5Fg"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aM1-37-241">
-                                <rect key="frame" x="226" y="520" width="30" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aM1-37-241">
+                                <rect key="frame" x="285" y="511" width="30" height="30"/>
                                 <state key="normal" title="再生"/>
                                 <connections>
                                     <action selector="performSlideshow:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QBb-aa-NXc"/>
@@ -40,6 +40,14 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="2ul-4w-bUD" secondAttribute="bottom" constant="15" id="4aX-Fe-SXB"/>
+                            <constraint firstItem="2ul-4w-bUD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-120" id="AbK-6k-8yd" userLabel="Backward Button.centerX = centerX - 150"/>
+                            <constraint firstItem="sfA-4P-0Sp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="120" id="Lc2-ic-vDT" userLabel="Forward Button.centerX = centerX + 150"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="aM1-37-241" secondAttribute="bottom" constant="15" id="aTB-q1-FIh"/>
+                            <constraint firstItem="aM1-37-241" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dnM-gB-daA"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="sfA-4P-0Sp" secondAttribute="bottom" constant="15" id="hkk-sH-4lh"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -64,8 +72,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1w7-eD-6by">
-                                <rect key="frame" x="285" y="536" width="30" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1w7-eD-6by">
+                                <rect key="frame" x="285" y="555" width="30" height="30"/>
                                 <state key="normal" title="戻る"/>
                                 <connections>
                                     <segue destination="5MC-gG-4Nf" kind="unwind" unwindAction="unwind:" id="5Yb-FY-DmL"/>
@@ -73,6 +81,10 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="nXu-bA-d3S" firstAttribute="top" secondItem="1w7-eD-6by" secondAttribute="bottom" constant="15" id="Bho-2F-cts"/>
+                            <constraint firstItem="1w7-eD-6by" firstAttribute="centerX" secondItem="l7I-Kp-4O9" secondAttribute="centerX" id="ELh-8o-v5S"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lP5-A2-ZcC" userLabel="First Responder" sceneMemberID="firstResponder"/>

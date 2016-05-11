@@ -41,10 +41,12 @@ class ViewController: UIViewController {
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageTapped)))
     }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     
     @IBAction func performForward(sender: AnyObject) {
         currentPhotoIndex += 1
@@ -54,6 +56,8 @@ class ViewController: UIViewController {
         
         self.performTransition(currentPhotoIndex)
     }
+    
+    
     @IBAction func performBackward(sender: AnyObject) {
         currentPhotoIndex -= 1
         if currentPhotoIndex < 0 {
@@ -61,11 +65,11 @@ class ViewController: UIViewController {
         }
         
         self.performTransition(currentPhotoIndex)
-   }
+    }
+    
     
     @IBAction func performSlideshow(sender: AnyObject) {
-        
-        var controlState: UIControlState
+//        var controlState: UIControlState
         
         if slideshowState == false {
             timer = NSTimer.scheduledTimerWithTimeInterval(
@@ -79,7 +83,7 @@ class ViewController: UIViewController {
             forwardButton.enabled = false
             backwardButton.enabled = false
             
-            controlState = slideShowButton.state
+//            controlState = slideShowButton.state
 //            slideShowButton.setTitle("stop", forState: controlState)
             slideShowButton.setTitle("停止", forState: .Normal)
             
@@ -91,7 +95,7 @@ class ViewController: UIViewController {
             forwardButton.enabled = true
             backwardButton.enabled = true
             
-            controlState = slideShowButton.state
+//            controlState = slideShowButton.state
 //            slideShowButton.setTitle("play", forState: controlState)
             slideShowButton.setTitle("再生", forState: .Normal)
             
@@ -131,15 +135,12 @@ class ViewController: UIViewController {
     }
     
     func imageTapped(sender: UITapGestureRecognizer) {
-        print("imageTapped\n")
-                
         let nextVC = self.storyboard?.instantiateViewControllerWithIdentifier("ResultViewController")
         let resultViewController:ResultViewController = nextVC as! ResultViewController
         resultViewController.currentPhotoIndex = currentPhotoIndex
         
         nextVC?.modalTransitionStyle = .CrossDissolve
         self.presentViewController(nextVC!, animated: true, completion: nil)
-    
     }
     
     @IBAction func unwind(segue: UIStoryboardSegue) {
