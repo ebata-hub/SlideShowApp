@@ -15,22 +15,12 @@ class ResultViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
- 
-    /*
-    override func showViewController(vc: UIViewController, sender: AnyObject?) {
-        let rect = CGRect(x:0, y:0, width:400, height:300)
-        imageView.frame = rect
-        imageView.contentMode = .ScaleAspectFit
-        imageView.center = self.view.center
-        self.view.addSubview(imageView)
-    }
-    */
     
     override func viewDidAppear(animated: Bool) {
         let rect = CGRect(x:0, y:0, width:400, height:300)
         let imageView = UIImageView(frame: rect)
+        
         imageView.contentMode = .ScaleAspectFit
         let photoName = photoList[currentPhotoIndex]
         imageView.image = UIImage(named: photoName)
