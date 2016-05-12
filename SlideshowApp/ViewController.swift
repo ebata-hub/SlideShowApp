@@ -31,11 +31,55 @@ class ViewController: UIViewController {
         
         let rect = CGRect(x:0, y:0, width:300, height:200)
         let imageView = UIImageView(frame: rect)
-        imageView.contentMode = .ScaleAspectFit
         imageView.image = UIImage(named: "images/image01.jpg")
-        imageView.center = self.view.center
+        imageView.contentMode = .ScaleAspectFit
+        imageView.clipsToBounds = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+//        imageView.center = self.view.center
         self.view.addSubview(imageView)
         currentImageView = imageView;
+        
+        let constraintX = NSLayoutConstraint (
+            item: imageView,
+            attribute: NSLayoutAttribute.CenterX,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self.view,
+            attribute: NSLayoutAttribute.CenterX,
+            multiplier: 1,
+            constant: 0)
+        
+        let constraintY = NSLayoutConstraint (
+            item: imageView,
+            attribute: NSLayoutAttribute.CenterY,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self.view,
+            attribute: NSLayoutAttribute.CenterY,
+            multiplier: 1,
+            constant: 0)
+
+        let constraintWidth = NSLayoutConstraint (
+            item: imageView,
+            attribute: NSLayoutAttribute.Width,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self.view,
+            attribute: NSLayoutAttribute.Width,
+            multiplier: 4/5,
+            constant: 0)
+
+        let constraintHeight = NSLayoutConstraint (
+            item: imageView,
+            attribute: NSLayoutAttribute.Height,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self.view,
+            attribute: NSLayoutAttribute.Height,
+            multiplier: 3/5,
+            constant: 0)
+
+        
+        self.view.addConstraint(constraintX)
+        self.view.addConstraint(constraintY)
+        self.view.addConstraint(constraintWidth)
+        self.view.addConstraint(constraintHeight)
     
         imageView.userInteractionEnabled = true
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageTapped)))
@@ -103,6 +147,7 @@ class ViewController: UIViewController {
         }
     }
     
+    
     func Slideshow() {
         currentPhotoIndex += 1
         if currentPhotoIndex >= photoList.count {
@@ -111,6 +156,7 @@ class ViewController: UIViewController {
         
         self.performTransition(currentPhotoIndex)
     }
+    
     
     func performTransition(newIndex:Int) {
         let rect = CGRect(x:0, y:0, width:300, height:200)
@@ -134,6 +180,7 @@ class ViewController: UIViewController {
         newImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageTapped)))
     }
     
+
     func imageTapped(sender: UITapGestureRecognizer) {
         let nextVC = self.storyboard?.instantiateViewControllerWithIdentifier("ResultViewController")
         let resultViewController:ResultViewController = nextVC as! ResultViewController
@@ -142,6 +189,7 @@ class ViewController: UIViewController {
         nextVC?.modalTransitionStyle = .CrossDissolve
         self.presentViewController(nextVC!, animated: true, completion: nil)
     }
+    
     
     @IBAction func unwind(segue: UIStoryboardSegue) {
     }
