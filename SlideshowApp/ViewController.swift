@@ -65,7 +65,6 @@ class ViewController: UIViewController {
             
             forwardButton.enabled = false
             backwardButton.enabled = false
-            
             slideShowButton.setTitle("停止", forState: .Normal)
             slideshowState = true
             
@@ -73,8 +72,7 @@ class ViewController: UIViewController {
             timer!.invalidate()
             
             forwardButton.enabled = true
-            backwardButton.enabled = true
-            
+            backwardButton.enabled = true            
             slideShowButton.setTitle("再生", forState: .Normal)
             slideshowState = false
  
