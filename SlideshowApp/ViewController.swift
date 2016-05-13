@@ -16,73 +16,14 @@ class ViewController: UIViewController {
     
     let photoList = ["images/image01.jpg", "images/image02.jpg", "images/image03.jpg"]
     var currentPhotoIndex = 0
-    var currentImageView:UIView!
-    
+    var currentImageView:UIView? = nil
     var slideshowState = false
-    var timer:NSTimer!
+    var timer:NSTimer?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-//        myViewArray.append(firstView)
-//        myViewArray.append(secondView)
-//        myViewArray.append(thirdView)
-        
-        let rect = CGRect(x:0, y:0, width:300, height:200)
-        let imageView = UIImageView(frame: rect)
-        imageView.image = UIImage(named: "images/image01.jpg")
-        imageView.contentMode = .ScaleAspectFit
-        imageView.clipsToBounds = true
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-//        imageView.center = self.view.center
-        self.view.addSubview(imageView)
-        currentImageView = imageView;
-        
-        let constraintX = NSLayoutConstraint (
-            item: imageView,
-            attribute: NSLayoutAttribute.CenterX,
-            relatedBy: NSLayoutRelation.Equal,
-            toItem: self.view,
-            attribute: NSLayoutAttribute.CenterX,
-            multiplier: 1,
-            constant: 0)
-        
-        let constraintY = NSLayoutConstraint (
-            item: imageView,
-            attribute: NSLayoutAttribute.CenterY,
-            relatedBy: NSLayoutRelation.Equal,
-            toItem: self.view,
-            attribute: NSLayoutAttribute.CenterY,
-            multiplier: 1,
-            constant: 0)
-
-        let constraintWidth = NSLayoutConstraint (
-            item: imageView,
-            attribute: NSLayoutAttribute.Width,
-            relatedBy: NSLayoutRelation.Equal,
-            toItem: self.view,
-            attribute: NSLayoutAttribute.Width,
-            multiplier: 4/5,
-            constant: 0)
-
-        let constraintHeight = NSLayoutConstraint (
-            item: imageView,
-            attribute: NSLayoutAttribute.Height,
-            relatedBy: NSLayoutRelation.Equal,
-            toItem: self.view,
-            attribute: NSLayoutAttribute.Height,
-            multiplier: 3/5,
-            constant: 0)
-
-        
-        self.view.addConstraint(constraintX)
-        self.view.addConstraint(constraintY)
-        self.view.addConstraint(constraintWidth)
-        self.view.addConstraint(constraintHeight)
-    
-        imageView.userInteractionEnabled = true
-        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageTapped)))
+        self.performTransition(currentPhotoIndex)
     }
 
     
@@ -113,8 +54,6 @@ class ViewController: UIViewController {
     
     
     @IBAction func performSlideshow(sender: AnyObject) {
-//        var controlState: UIControlState
-        
         if slideshowState == false {
             timer = NSTimer.scheduledTimerWithTimeInterval(
                 2.0,
@@ -127,23 +66,18 @@ class ViewController: UIViewController {
             forwardButton.enabled = false
             backwardButton.enabled = false
             
-//            controlState = slideShowButton.state
-//            slideShowButton.setTitle("stop", forState: controlState)
             slideShowButton.setTitle("停止", forState: .Normal)
-            
             slideshowState = true
             
         } else {
-            timer.invalidate()
+            timer!.invalidate()
             
             forwardButton.enabled = true
             backwardButton.enabled = true
             
-//            controlState = slideShowButton.state
-//            slideShowButton.setTitle("play", forState: controlState)
             slideShowButton.setTitle("再生", forState: .Normal)
-            
             slideshowState = false
+ 
         }
     }
     
@@ -162,22 +96,70 @@ class ViewController: UIViewController {
         let rect = CGRect(x:0, y:0, width:300, height:200)
         let newImageView = UIImageView(frame: rect)
         newImageView.contentMode = .ScaleAspectFit
+        newImageView.clipsToBounds = true
         let photoName = photoList[newIndex]
         newImageView.image = UIImage(named: photoName)
         newImageView.center = self.view.center
         
-        UIView.transitionFromView(
-            currentImageView,
-            toView: newImageView,
-            duration: 1,
-            options: UIViewAnimationOptions.TransitionCrossDissolve,
-            completion: nil)
+        if let imageView = currentImageView {
+            UIView.transitionFromView(
+                imageView,
+                toView: newImageView,
+                duration: 1,
+                options: UIViewAnimationOptions.TransitionCrossDissolve,
+                completion: nil)
+        
+        } else {
+            self.view.addSubview(newImageView)
+        }
         
         currentImageView = newImageView
         currentPhotoIndex = newIndex
         
-        newImageView.userInteractionEnabled = true
-        newImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageTapped)))
+        currentImageView!.translatesAutoresizingMaskIntoConstraints = false
+        let constraintX = NSLayoutConstraint (
+            item: currentImageView!,
+            attribute: NSLayoutAttribute.CenterX,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self.view,
+            attribute: NSLayoutAttribute.CenterX,
+            multiplier: 1,
+            constant: 0)
+        
+        let constraintY = NSLayoutConstraint (
+            item: currentImageView!,
+            attribute: NSLayoutAttribute.CenterY,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self.view,
+            attribute: NSLayoutAttribute.CenterY,
+            multiplier: 1,
+            constant: 0)
+        
+        let constraintWidth = NSLayoutConstraint (
+            item: currentImageView!,
+            attribute: NSLayoutAttribute.Width,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self.view,
+            attribute: NSLayoutAttribute.Width,
+            multiplier: 3/5,
+            constant: 0)
+        
+        let constraintHeight = NSLayoutConstraint (
+            item: currentImageView!,
+            attribute: NSLayoutAttribute.Height,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self.view,
+            attribute: NSLayoutAttribute.Height,
+            multiplier: 3/5,
+            constant: 0)
+        
+        self.view.addConstraint(constraintX)
+        self.view.addConstraint(constraintY)
+        self.view.addConstraint(constraintWidth)
+        self.view.addConstraint(constraintHeight)
+        
+        currentImageView!.userInteractionEnabled = true
+        currentImageView!.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageTapped)))
     }
     
 
